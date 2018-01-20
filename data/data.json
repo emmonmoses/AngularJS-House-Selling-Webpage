@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+     "type":"Apartment",
+     "price":2200059,
+     "address":"122 Riat Kisumu",
+     "description":"Spacious,with swimming pool and lake view.",
+     "details": {
+      "bedrooms": 2,
+      "bathrooms": 1.5,
+      "area": 921 
+    },
+    "image":"house-1"
+  },
+  {
+    "id": 2,
+    "type":"Bungalow",
+   "price":4127100,
+   "address":"556 Karen Nairobi",
+   "description":"Beautiful home with lots of nice green space.",
+    "details": {
+      "bedrooms": 4,
+      "bathrooms": 3,
+      "area": 2145 
+    },
+    "image":"house-2"
+  },
+  {
+   "id": 3,
+   "type":"Mansion",
+   "price":3228970,
+   "address":"228 Diani Mombasa",
+   "description":"Great neighbourhood,with beach view.",
+    "details": {
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "area": 1500 
+    },
+    "image":"house-3"
+  },
+  {
+    "id": 4,
+    "type": "Condo",
+    "price": 6755990,
+    "address": "7807 Great Rift Nakuru",
+    "description": "Best house on the block!",
+    "details": {
+      "bedrooms": 6,
+      "bathrooms": 4.5,
+      "area": 3230 
+    },
+    "image":"house-4"
+  },
+  {
+    "id": 5,
+    "type": "House",
+    "price": 5210500,
+    "address": "1857 The Greens Eldoret",
+    "description": "Nice little house with room to grow.",
+    "details": {
+      "bedrooms": 2,
+      "bathrooms": 1.5,
+      "area": 1023 
+    },
+    "image":"house-5"
+  },
+  {
+    "id": 6,
+    "type": "Bungalow",
+    "price": 1334900,
+    "address": "7398 Mchenza Malindi",
+    "description": "You'll love the view!",
+    "details": {
+      "bedrooms": 4,
+      "bathrooms": 2.5,
+      "area": 1788 
+    },
+    "image":"house-6"
+  }
+]
