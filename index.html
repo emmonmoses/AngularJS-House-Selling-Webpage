@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Real Estate</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app="ngHouses" ng-controller="housesController">
+<!--<button ng-click="showMessage = !showMessage">Toggle Message</button>
+<button ng-click="showMessage = false">Hide Message</button>
+<h2 ng-show="showMessage == true">Secret Message</h2> testing angulars ng-show   -->
+	<!--<input type="text" placeholder="Leave a Message" ng-model="message">
+	<h2>{{ message }}</h2> testing ng-model for binding text element into an input-->
+
+<!--Navbar..but its not necessary for this app.Just for adding some neatness-->
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">ng-Real Estate</a>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+<!--Lowest and Highest price Selection-->
+<div class="col-sm-12 price-form">
+<div class="row price-form-row" ng-if="!addListing && !editListing">
+	<div class="col-sm-6">
+		<div class="input-group">
+			<span class="input-group-addon">Lowest Price</span>
+			<select name="minPrice" id="minPrice" ng-model="priceInfo.min" class="form-control">
+				<option value="1000000">Ksh.1,000,000</option>
+				<option value="2000000">Ksh.2,000,000</option>
+				<option value="3000000">Ksh.3,000,000</option>
+				<option value="4000000">Ksh.4,000,000</option>
+				<option value="5000000">Ksh.5,000,000</option>
+				<option value="6000000">Ksh.6,000,000</option>
+				<option value="7000000">Ksh.7,000,000</option>
+				<option value="8000000">Ksh.8,000,000</option>
+				<option value="9000000">Ksh.9,000,000</option>
+				<option value="10000000">Ksh.10,000,000</option>
+			</select>
+		</div>
+	</div>
+
+	<div class="col-sm-6">
+		<div class="input-group">
+			<span class="input-group-addon">Highest Price</span>
+			<select type="select" name="maxPrice" id="maxPrice" ng-model="priceInfo.max" class="form-control">
+				<option value="1000000">Ksh.1,000,000</option>
+				<option value="2000000">Ksh.2,000,000</option>
+				<option value="3000000">Ksh.3,000,000</option>
+				<option value="4000000">Ksh.4,000,000</option>
+				<option value="5000000">Ksh.5,000,000</option>
+				<option value="6000000">Ksh.6,000,000</option>
+				<option value="7000000">Ksh.7,000,000</option>
+				<option value="8000000">Ksh.8,000,000</option>
+				<option value="9000000">Ksh.9,000,000</option>
+				<option value="10000000">Ksh.10,000,000</option>
+			</select>
+		</div>
+	</div>
+	</div>
+	 <button class="btn btn-primary" ng-click="addListing = !addListing" ng-show="!addListing">Add New House</button>
+          <button class="btn btn-danger" ng-click="addListing = !addListing" ng-show="addListing">Close</button>
+
+          <div class="listing-form" ng-if="addListing">
+
+            <h3>Add a New House</h3>
+
+            <div class="row listing-form-row">
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Address</span>
+                  <input type="text" placeholder="Enter the address" class="form-control" ng-model="newListing.address">
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Price</span>
+                  <input type="text" placeholder="Enter the price" class="form-control" ng-model="newListing.price">
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Property Type</span>
+                  <select type="select" name="propertyType" id="propertyType" class="form-control" ng-model="newListing.type">
+                    <option value="Duplex">Duplex</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Mansion">Mansion</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Bungalow">Bungalow</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row listing-form-row">
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Description</span>
+                  <textarea type="text" placeholder="Enter the description" class="form-control" ng-model="newListing.description"></textarea>
+                </div>
+              </div> 
+
+              <div class="col-sm-8">
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">Beds</span>
+                    <input type="text" placeholder="Bedrooms" class="form-control" ng-model="newListing.details.bedrooms">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class ="input-group-addon">Baths</span>
+                    <input type="text" placeholder="Bathrooms" class="form-control" ng-model="newListing.details.bathrooms">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">SqFt</span>
+                    <input type="text" placeholder="Square Footage" class="form-control" ng-model="newListing.details.area">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+             <button class="btn btn-primary listing-button" ng-click="addHouse(newListing)" ng-show="addListing">Add</button>
+              <pre>{{ newListing | json }}</pre>
+                     </div>
+
+                     <div class="listing-form" ng-if="editListing">
+
+            <h3>Edit Listing</h3>
+
+            <div class="row listing-form-row">
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Address</span>
+                  <input type="text" placeholder="Enter the address" class="form-control" ng-model="existingListing.address">
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Price</span>
+                  <input type="text" placeholder="Enter the price" class="form-control" ng-model="existingListing.price">
+                </div>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Property Type</span>
+                  <select type="select" name="propertyType" id="propertyType" class="form-control" ng-model="existingListing.type">
+                    <option value="Duplex">Duplex</option>
+                    <option value="Condo">Condo</option>
+                    <option value="Mansion">Mansion</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Bungalow">Bungalow</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row listing-form-row">
+              <div class="col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">Description</span>
+                  <textarea type="text" placeholder="Enter the description" class="form-control" ng-model="existingListing.description"></textarea>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">Beds</span>
+                    <input type="text" placeholder="Bedrooms" class="form-control" ng-model="existingListing.details.bedrooms">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">Baths</span>
+                    <input type="text" placeholder="Bathrooms" class="form-control" ng-model="existingListing.details.bathrooms">
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="input-group">
+                    <span class="input-group-addon">SqFt</span>
+                    <input type="text" placeholder="Square Footage" class="form-control" ng-model="existingListing.details.area">
+                  </div>
+                </div>
+
+              </div>       
+               
+            <button class="btn btn-primary listing-button" ng-click="saveHouseEdit()" ng-show="editListing">Save</button>
+            <button class="btn btn-danger listing-button" ng-click="deleteHouse(existingListing)" ng-show="editListing">Delete</button>
+    
+     </div>       
+     </div>
+</div>
+
+
+
+<!--These are the actual houses listing-->
+<div class="container">
+	<div class="col-sm-4" ng-repeat="house in houses | housesFilter:priceInfo | orderBy: '-id'">
+		<div class="thumbnail">
+			<img ng-src="images/{{ house.image }}.jpg" alt ="">
+			<div class="caption">
+				<h3><i class="glyphicon glyphicon-tag"></i>{{ house.price | currency: "Ksh. "}}</h3>
+	            <h4><i class="glyphicon glyphicon-home"></i>{{ house.address }}
+                <span class="label label-primary label-sm">{{ house.type }} </span>
+		        </h4>
+			</div>
+			<button class="btn btn-xs btn-success"
+					ng-hide="showDetails === true"
+					ng-click="showDetails = !showDetails">View Details</button>
+
+
+					<button class="btn btn-xs btn-primary"
+					 ng-show="showDetails" 
+					 ng-click="editHouse(house)">Edit</button>
+
+			<button class="btn btn-xs btn-danger"
+					ng-show="showDetails === true"
+					ng-click="showDetails = !showDetails">Close</button>
+
+			<div class = "details" ng-show =" showDetails === true">
+			<h4>
+				<span class="label label-primary">Beds: {{ house.details.bedrooms }} </span>&nbsp;
+				<span class="label label-primary">Baths: {{ house.details.bathrooms }} </span>&nbsp;
+				<span class="label label-primary">SqFt: {{ house.details.area }} </span>
+			</h4>
+			<p>{{ house.description }}</p>
+		</div>
+		</div>
+		</div>
+	</div>
+
+	<!--<div class="well" ng-repeat="house in houses">
+		<h3>{{ house.address }}</h3>
+		<p><strong>Type:</strong>{{ house.type }}</p>
+		<p><strong>Description:</strong>{{ house.description }}</p>
+		<p><strong>Price:</strong>{{ house.price | currency}}</p>
+	</div>does the same thing as div.container above only that this is not so much styled as the div above-->
+<!--<pre>{{ houses | json }}</pre> does the same thing as div.well above only that this is not styled as the div above-->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script src="app.js"></script>
+<script src="scripts/housesController.js"></script>
+<script src="scripts/housesFactory.js"></script>
+<script src="scripts/housesFilter.js"></script>
+</html>
+
